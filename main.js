@@ -9,28 +9,6 @@ const getLatestNews = async () => {
   console.log("success", newsList);
 };
 
-const render = () => {
-  const newsHTML = newsList
-    .map(
-      (news) => `<div class="row news">
-  <div class="col-lg-4">
-    <img
-      class="news-img-size"
-      src=${news.urlToImage}
-      alt="news_image"
-    />
-  </div>
-  <div class="col-lg-8">
-    <h2>${news.title}</h2>
-    <p>${news.description}</p>
-    <div>${news.source.name} * ${news.publishAt}</div>
-  </div>
-</div>`
-    )
-    .join("");
-  document.getElementById("news-board").innerHTML = newsHTML;
-};
-
 const openNav = () => {
   document.getElementById("sidenav").style.width = "250px";
 };
@@ -46,6 +24,41 @@ const openSearchBar = () => {
   } else {
     inputArea.style.display = "inline";
   }
+};
+
+const imgError = (image) => {
+  image.onerror = null;
+  image.src =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqEWgS0uxxEYJ0PsOb2OgwyWvC0Gjp8NUdPw&usqp=CAU";
+};
+
+const render = () => {
+  const newsHtml = newsList
+    .map(
+      (news) => `<div class="row news-list">
+		<div class="col-lg-4 news-image">
+			<img src="${
+        news.urlToImage
+      }" alt="뉴스 이미지" class="news-img-size" onerror="imgError(this)">
+		</div>
+		<div class="col-lg-8 news-content">
+			<h2 class="news-title">${news.title}</h2>
+			<p>${
+        news.description == null || news.description == ""
+          ? "내용없음"
+          : news.description.length > 200
+          ? news.description.substring(0, 200) + "..."
+          : news.description
+      }</p>
+			<div>${news.source.name || "no source"}  ${moment(
+        news.publishedAt
+      ).fromNow()}</div>			
+		</div>
+	</div>`
+    )
+    .join("");
+
+  document.getElementById("news-board").innerHTML = newsHtml;
 };
 
 getLatestNews();
