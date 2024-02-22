@@ -16,7 +16,7 @@ const getLatestNews = async () => {
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   const url = new URL(
-    `ttps://news-times-v1.netlify.app/top-headlines?category=${category}`
+    `https://news-times-v1.netlify.app/top-headlines?category=${category}`
   );
 
   const response = await fetch(url);
@@ -28,7 +28,7 @@ const getNewsByCategory = async (event) => {
 const searchNews = async () => {
   const keyword = document.getElementById("search-input").value;
   const url = new URL(
-    `ttps://news-times-v1.netlify.app/top-headlines?q=${keyword}`
+    `https://news-times-v1.netlify.app/top-headlines?q=${keyword}`
   );
 
   const response = await fetch(url);
