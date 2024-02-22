@@ -16,7 +16,7 @@ const getLatestNews = async () => {
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   const url = new URL(
-    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?category=${category}`
+    `ttps://news-times-v1.netlify.app/top-headlines?category=${category}`
   );
 
   const response = await fetch(url);
@@ -28,7 +28,7 @@ const getNewsByCategory = async (event) => {
 const searchNews = async () => {
   const keyword = document.getElementById("search-input").value;
   const url = new URL(
-    `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?q=${keyword}`
+    `ttps://news-times-v1.netlify.app/top-headlines?q=${keyword}`
   );
 
   const response = await fetch(url);
