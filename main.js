@@ -1,5 +1,5 @@
-// const API_KEY = `0c328b291853445b8357c74f52a8e78c`;
 let newsList = [];
+
 const getLatestNews = async () => {
   const url = new URL(`https://news-times-v1.netlify.app/top-headlines?`);
   const response = await fetch(url);
@@ -29,6 +29,23 @@ const render = () => {
     )
     .join("");
   document.getElementById("news-board").innerHTML = newsHTML;
+};
+
+const openNav = () => {
+  document.getElementById("sidenav").style.width = "250px";
+};
+
+const closeNav = () => {
+  document.getElementById("sidenav").style.width = "0";
+};
+
+const openSearchBar = () => {
+  let inputArea = document.getElementById("input-area");
+  if (inputArea.style.display === "inline") {
+    inputArea.style.display = "none";
+  } else {
+    inputArea.style.display = "inline";
+  }
 };
 
 getLatestNews();
