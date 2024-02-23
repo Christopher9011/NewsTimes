@@ -1,3 +1,19 @@
+.icon-button {
+  padding: 8px 9px 9px;
+  margin-top: 5px;
+}
+.icon-button:hover {
+  background-color: beige;
+}
+.hide {
+  display: none;
+}
+
+.search-button {
+  border: none;
+  background-color: beige;
+}
+
 .head-line {
   display: flex;
   justify-content: center;
@@ -6,6 +22,14 @@
 
 .head-line svg {
   width: 430px;
+}
+
+.news-title {
+  margin-top: 1em;
+}
+
+.news-img-size {
+  margin-top: 1em;
 }
 
 .menus {
@@ -34,6 +58,10 @@
 
 .news {
   border-bottom: 2px solid #000;
+}
+
+.fa-solid fa-bars {
+  display: none;
 }
 
 .side-menu {
@@ -69,4 +97,23 @@
 .side-menu-list button:hover {
   background-color: beige;
   border-radius: 3px;
+}
+
+#search-input {
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 3px;
+  height: 33px;
+}
+
+#input-area {
+  display: none;
+}
+
+@media screen and (max-width: 63rem) {
+  .hide {
+    display: inline;
+  }
+  .menus {
+    display: none;
+  }
 }
