@@ -3,6 +3,10 @@ const menus = document.querySelectorAll(".menus button");
 menus.forEach((menu) =>
   menu.addEventListener("click", (event) => getNewsByCategory(event))
 );
+const sideMenus = document.querySelectorAll(".side-menu-list button");
+sideMenus.forEach((sideMenu) =>
+  sideMenu.addEventListener("click", (event) => getNewsByCategory(event))
+);
 
 let url = new URL(`https://news-times-v1.netlify.app/top-headlines?`);
 
