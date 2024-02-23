@@ -31,15 +31,19 @@
       </div>
     </div>
 
-    <i class="fa-solid fa-bars" onclick="openNav()"></i>
-    <i class="fa-solid fa-magnifying-glass" onclick="openSearchBar()"></i>
-    <span id="input-area">
-      <input type="text" id="search-input" placeholder="search" />
-      <button class="search-button" onclick="searchNews()">Go</button>
-    </span>
-
     <section class="container">
       <section>
+        <div>
+          <i class="fa-solid fa-bars hide icon-button" onclick="openNav()"></i>
+          <i
+            class="fa-solid fa-magnifying-glass icon-button"
+            onclick="openSearchBar()"
+          ></i>
+          <span id="input-area">
+            <input type="text" id="search-input" placeholder="search" />
+            <button class="search-button" onclick="searchNews()">Go</button>
+          </span>
+        </div>
         <div class="head-line">
           <svg viewBox="0 0 184 25" fill="#000" aria-hidden="true">
             <path
