@@ -10,16 +10,27 @@ sideMenus.forEach((sideMenu) =>
 
 let url = new URL(`https://news-times-v1.netlify.app/top-headlines?`);
 
+let totalResults = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
+
 const getNews = async () => {
   try {
+    url.searchParams.set("page", page);
+    url.searchParams.set("pageSize", pageSize);
+
     const response = await fetch(url);
     const data = await response.json();
+    console.log("data", data);
     if (response.status === 200) {
       if (data.articles.length === 0) {
         throw new Error("No result for this search");
       }
       newsList = data.articles;
+      totalResults = data.totalResults;
       render();
+      paginationRender();
     } else {
       throw new Error(data.message);
     }
@@ -108,6 +119,41 @@ const errorRender = (errorMessage) => {
   </div>`;
 
   document.getElementById("news-board").innerHTML = errorHTML;
+};
+
+const paginationRender = () => {
+  // totalResult
+  // page
+  // pageSize
+  // groupSize
+  // pageGroup
+  const pageGroup = Math.ceil(page / groupSize);
+  // totalPages
+  const totalPages = Math.ceil(totalResults / pageSize);
+  // lastPage
+  let lastPage = pageGroup * groupSize;
+  if (lastPage > totalPages) {
+    lastPage = totalPages;
+  }
+  // firstPage
+  const firstPage =
+    lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+
+  let paginationHTML = ``;
+
+  for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page-item ${
+      i === page ? "active" : ""
+    }" onclick=moveToPage(${i})><a class="page-link" >${i}</a></li>`;
+  }
+
+  document.querySelector(".pagination").innerHTML = paginationHTML;
+};
+
+const moveToPage = (pageNum) => {
+  console.log("work!", pageNum);
+  page = pageNum;
+  getNews();
 };
 
 getLatestNews();
