@@ -114,7 +114,20 @@
 }
 
 .pagination {
+  display: flex;
+  justify-content: center;
   margin-top: 1em;
+}
+
+.page-link {
+  color: #000;
+}
+
+.active > .page-link,
+.page-link.active {
+  border: none;
+  color: #000;
+  background-color: beige;
 }
 
 @media screen and (max-width: 63rem) {
